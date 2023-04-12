@@ -1,4 +1,8 @@
 import gradio as gr
+import pickle 
+from gradio.themes.base import Base
+import time
+
 # # Define your Gradio block with added rows
 
 
@@ -21,8 +25,13 @@ import gradio as gr
 # Churn:['No', 'Yes']
 # with gr.Blocks(theme=gr.themes.Default(primary_hue="red", secondary_hue="pink")
 
-from gradio.themes.base import Base
-import time
+def load_pickle(filename):
+    with open(filename, 'rb') as file:
+        data = pickle.load(file)
+        return data
+    
+pipeline = load_pickle('full_pipeline.pkl')
+model = load_pickle('logistic_reg_class_model.pkl')
 
 class Seafoam(Base):
     pass
