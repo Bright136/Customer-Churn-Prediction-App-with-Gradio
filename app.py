@@ -26,8 +26,26 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
     predictions = model.predict_proba(processed_dataframe)
     return round(predictions[0][0], 3), round(predictions[0][1], 3)
 
+theme = gr.themes.Soft(
+    primary_hue=gr.themes.Color(c100="#fef3c7", c200="#fde68a", c300="#fcd34d", c400="#fbbf24", c50="#dac058", c500="#f59e0b", c600="#d97706", c700="#b45309", c800="#92400e", c900="#78350f", c950="#6c370f"),
+    secondary_hue="stone",
+    neutral_hue=gr.themes.Color(c100="#d1fae5", c200="#a7f3d0", c300="#6ee7b7", c400="#34d399", c50="#95dfbd", c500="#10b981", c600="#059669", c700="#047857", c800="#065f46", c900="#064e3b", c950="#054436"),
+).set(
+    input_shadow_dark='*shadow_spread'
 
+)
+theme2 = gr.themes.Base(
+    primary_hue="orange",
+    neutral_hue=gr.themes.Color(c100="#dbeafe", c200="#bfdbfe", c300="#93c5fd", c400="#60a5fa", c50="#296dc7", c500="#3b82f6", c600="#2563eb", c700="#1d4ed8", c800="#1e40af", c900="#1e3a8a", c950="#1d3660"),
+)
 
+theme3 = gr.themes.Soft(
+    primary_hue="orange") 
+
+theme4 = gr.themes.Default().set(body_background_fill="#0E1117",
+                                 background_fill_secondary="#FF4B4B",
+                                 background_fill_primary="#262730",
+                                 body_text_color="#FF4B4B")
 
 
 def load_pickle(filename):
@@ -43,15 +61,15 @@ train_features = ['gender', 'SeniorCitizen', 'Partner', 'Dependents','tenure', '
                    'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges']
 
 
-
-theme = gr.themes.Base()
-with  gr.Blocks(theme=theme) as demo:
+# theme = gr.themes.Base()
+with  gr.Blocks(theme=theme4) as demo:
     gr.Markdown(
     """
-    # Welcome Cherished User 👋 !
-    ## Customer Churn Classification App
+    # Customer Churn Classification App
+    ## Welcome Cherished User 👋 !
+    
     Start predicting customer churn.
-    """)
+    """, css= "h1 {color: red}")
     with gr.Row():
         gender = gr.Dropdown(label='Gender', choices=['Female', 'Male'])
         Contract  = gr.Dropdown(label='Contract', choices=['Month-to-month', 'One year', 'Two year'])
