@@ -5,6 +5,23 @@ from gradio.themes.base import Base
 import pandas as pd
 import numpy as np
 from utils import create_new_columns, create_processed_dataframe
+import os 
+
+
+
+def check_csv(csv_file, data):
+    if os.path.isfile(csv_file):
+        data.to_csv(csv_file, mode='a', header=False, index=False, encoding='utf-8')
+    else:
+        history = data.copy()
+        history.to_csv(csv_file, index=False)
+
+
+
+
+
+
+
 def tenure_values():
     cols = ['0-2', '3-5', '6-8', '9-11', '12-14', '15-17', '18-20', '21-23', '24-26', '27-29', '30-32', '33-35', '36-38', '39-41', '42-44', '45-47', '48-50', '51-53', '54-56', '57-59', '60-62', '63-65', '66-68', '69-71', '72-74']
     return cols
@@ -20,15 +37,18 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
     x = np.array([data])
     dataframe = pd.DataFrame(x, columns=train_features)
     dataframe = dataframe.astype({'MonthlyCharges': 'float', 'TotalCharges': 'float', 'tenure': 'float'})
-    create_new_columns(dataframe)
+    dataframe_ = create_new_columns(dataframe)
     try:
-        processed_data = pipeline.transform(dataframe)
+        processed_data = pipeline.transform(dataframe_)
     except Exception as e:
-        raise gr.CustomInterfaceError('the ')
+        raise gr.gradio('Kindly make sure to check/select all')
     else:
+        check_csv('history.csv', dataframe)
+        history = pd.read_csv('history.csv')
+
         processed_dataframe = create_processed_dataframe(processed_data, dataframe)
         predictions = model.predict_proba(processed_dataframe)
-    return round(predictions[0][0], 3), round(predictions[0][1], 3)
+    return round(predictions[0][0], 3), round(predictions[0][1], 3), history
 
 
 
@@ -102,14 +122,12 @@ with  gr.Blocks(theme=theme) as demo:
                                 minimum=0,
                                 value=0.0,
                                 label='No')
+        with gr.Accordion('Input History'):
+            output3 = gr.Dataframe()
 
     submit_button.click(fn=predict_churn, inputs=[gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneService, MultipleLines,     
-                                                  InternetService, OnlineSecurity, OnlineBackup, DeviceProtection,TechSupport,StreamingTV, StreamingMovies, Contract, PaperlessBilling, PaymentMethod, MonthlyCharges, TotalCharges], outputs=[output1, output2])
+                                                  InternetService, OnlineSecurity, OnlineBackup, DeviceProtection,TechSupport,StreamingTV, StreamingMovies, Contract, PaperlessBilling, PaymentMethod, MonthlyCharges, TotalCharges], outputs=[output1, output2, output3])
 
-    # if submit_button:
-    #     print(predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneService, MultipleLines, InternetService, 
-    #               OnlineSecurity, OnlineBackup, DeviceProtection,TechSupport,StreamingTV, StreamingMovies, 
-    #               Contract, PaperlessBilling, PaymentMethod, MonthlyCharges, TotalCharges))
 
 # demo = gr.Interface(fn=predict_churn, inputs=[gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneService, MultipleLines,
 #                                                    InternetService, OnlineSecurity, OnlineBackup, DeviceProtection,TechSupport,StreamingTV, StreamingMovies, Contract, PaperlessBilling, PaymentMethod, MonthlyCharges, TotalCharges], outputs=['slider', 'slider'], theme=theme)

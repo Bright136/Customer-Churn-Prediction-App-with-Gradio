@@ -16,6 +16,7 @@ def create_new_columns(train_data):
     labels =['{0}-{1}'.format(i, i+2) for i in range(0, 73, 3)]
     train_data['tenure_group'] = pd.cut(train_data['tenure'], bins=(range(0, 78, 3)), right=False, labels=labels)
     train_data.drop(columns=['tenure'], inplace=True)
+    return train_data
 
 
 

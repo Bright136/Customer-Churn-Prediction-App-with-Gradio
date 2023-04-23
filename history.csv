@@ -1,0 +1,4 @@
+gender,SeniorCitizen,Partner,Dependents,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges,Monthly Variations,tenure_group
+Female,Yes,Yes,Yes,No,Yes,Fiber optic,Yes,Yes,Yes,No internet service,Yes,Yes,Month-to-month,No,Bank transfer (automatic),123.0,1345.0,-131.0,12-14
+Female,Yes,Yes,Yes,No,Yes,Fiber optic,Yes,Yes,Yes,No internet service,Yes,Yes,Month-to-month,No,Bank transfer (automatic),123.0,1345.0,-131.0,12-14
+Female,Yes,Yes,No,No,Yes,Fiber optic,Yes,Yes,Yes,No internet service,Yes,Yes,Month-to-month,No,Bank transfer (automatic),123.0,5677.0,4201.0,12-14
