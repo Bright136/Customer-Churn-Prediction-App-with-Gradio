@@ -9,7 +9,7 @@
 ## Project Description
 This project involves building a customer churn prediction app with Gradio. The app uses a trained machine learning model to predict the likelihood of a customer churning based on their input data.
 ## Setup
-Clone the repository: git clone https://github.com/Bright136/Customer-Churn-Prediction-App-with-Gradio
+Clone the repository: git clone https://github.com/Bright136/Customer-Churn-Prediction-App-with-Gradio.git
 Install the required packages: pip install -r requirements.txt
 Ensure the input data csv file is saved in the project directory
 
