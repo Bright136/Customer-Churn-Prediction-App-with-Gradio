@@ -7,7 +7,12 @@ import numpy as np
 from utils import create_new_columns, create_processed_dataframe
 import os 
 
+DIRPATH = os.path.dirname(os.path.realpath(__file__))
 
+pipeline_pkl = os.path.join(DIRPATH, "assets",  "full_pipeline.pkl")
+log_reg = os.path.join(DIRPATH, "assets",  "logistic_reg_class_model.pkl")
+
+hist_df = os.path.join(DIRPATH, "assets",  "history.csv")
 
 def check_csv(csv_file, data):
     if os.path.isfile(csv_file):
@@ -43,8 +48,8 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
     except Exception as e:
         raise gr.gradio('Kindly make sure to check/select all')
     else:
-        check_csv('history.csv', dataframe)
-        history = pd.read_csv('history.csv')
+        check_csv(hist_df, dataframe)
+        history = pd.read_csv(hist_df)
 
         processed_dataframe = create_processed_dataframe(processed_data, dataframe)
         predictions = model.predict_proba(processed_dataframe)
@@ -55,7 +60,7 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
 theme = gr.themes.Default().set(body_background_fill="#0E1117",
                                  background_fill_secondary="#FFFFFF",
                                  background_fill_primary="#262730",
-                                 body_text_color="##0E1117",
+                                 body_text_color="#000000",
                                  checkbox_background_color='#FFFFFF', 
                                  slider_color_dark="#0000FF")
 
@@ -65,8 +70,8 @@ def load_pickle(filename):
         data = pickle.load(file)
         return data
 
-pipeline = load_pickle('full_pipeline.pkl')
-model = load_pickle('logistic_reg_class_model.pkl')
+pipeline = load_pickle(pipeline_pkl)
+model = load_pickle(log_reg)
 
 train_features = ['gender', 'SeniorCitizen', 'Partner', 'Dependents','tenure', 'PhoneService', 'MultipleLines', 'InternetService', 
                    'OnlineSecurity', 'OnlineBackup', 'DeviceProtection','TechSupport','StreamingTV', 'StreamingMovies', 

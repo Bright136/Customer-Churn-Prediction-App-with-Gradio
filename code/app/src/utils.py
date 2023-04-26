@@ -1,14 +1,20 @@
 import pandas as pd
 import numpy as np
 import pickle
+import os 
 
+
+
+DIRPATH = os.path.dirname(os.path.realpath(__file__))
+
+pipeline_pkl = os.path.join(DIRPATH, "assets",  "full_pipeline.pkl")
 
 def load_pickle(filename):
     with open(filename, 'rb') as file:
         data = pickle.load(file)
         return data
 
-preprocessor = load_pickle('full_pipeline.pkl')
+preprocessor = load_pickle(pipeline_pkl)
 
 
 def create_new_columns(train_data):
