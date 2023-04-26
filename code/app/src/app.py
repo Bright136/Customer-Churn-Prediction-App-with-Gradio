@@ -55,7 +55,7 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
 theme = gr.themes.Default().set(body_background_fill="#0E1117",
                                  background_fill_secondary="#FFFFFF",
                                  background_fill_primary="#262730",
-                                 body_text_color="#FF4B4B",
+                                 body_text_color="##0E1117",
                                  checkbox_background_color='#FFFFFF', 
                                  slider_color_dark="#0000FF")
 

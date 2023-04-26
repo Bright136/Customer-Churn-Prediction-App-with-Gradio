@@ -4,3 +4,6 @@ Female,Yes,Yes,Yes,No,Yes,Fiber optic,Yes,Yes,Yes,No internet service,Yes,Yes,Mo
 Female,Yes,Yes,No,No,Yes,Fiber optic,Yes,Yes,Yes,No internet service,Yes,Yes,Month-to-month,No,Bank transfer (automatic),123.0,5677.0,4201.0,12-14
 Male,Yes,Yes,Yes,Yes,No phone service,Fiber optic,No internet service,Yes,Yes,No,Yes,No internet service,Two year,Yes,Bank transfer (automatic),123.0,1200.0,-276.0,12-14
 Male,Yes,No,Yes,No,Yes,Fiber optic,No internet service,Yes,Yes,No,Yes,No internet service,Two year,No,Mailed check,123.0,1200.0,-276.0,12-14
+Female,No,Yes,Yes,Yes,No phone service,Fiber optic,Yes,Yes,Yes,Yes,No internet service,No internet service,One year,Yes,Credit card (automatic),128.0,1234.0,-1710.0,21-23
+Female,No,Yes,Yes,Yes,No phone service,Fiber optic,No internet service,No internet service,No internet service,No internet service,No internet service,No internet service,One year,Yes,Credit card (automatic),128.0,1234.0,-1710.0,21-23
+Female,No,Yes,Yes,Yes,Yes,Fiber optic,No internet service,Yes,Yes,Yes,Yes,Yes,One year,Yes,Credit card (automatic),128.0,1234.0,-1710.0,21-23
