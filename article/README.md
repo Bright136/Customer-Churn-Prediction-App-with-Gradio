@@ -1,0 +1,1 @@
+An article was publised on this project on medium. Kinldy access it <a  href='https://medium.com/@eshunbright136/building-a-customer-churn-prediction-app-with-gradio-3b9384f8efcc'>here.</a>
