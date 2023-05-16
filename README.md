@@ -4,7 +4,7 @@
 ## Summary
 | Code      | Name        | Published Article |  Deployed App |
 |-----------|-------------|:-------------:|------:|
-| LP4 | Customer Churn Prediction App with Gradio |  [Building a Customer Churn Prediction App with Gradio](/) | [Not Deployed Yet](/) |
+| LP4 | Customer Churn Prediction App with Gradio |  [Building a Customer Churn Prediction App with Gradio](https://brighteshun.medium.com/building-a-customer-churn-prediction-app-with-gradio-3b9384f8efcc) | [Not Deployed Yet](/) |
 
 ## Project Description
 This project involves building a customer churn prediction app with Gradio. The app uses a trained machine learning model to predict the likelihood of a customer churning based on their input data.
