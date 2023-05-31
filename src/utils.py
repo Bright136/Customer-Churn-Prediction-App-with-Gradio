@@ -1,20 +1,6 @@
 import pandas as pd
 import numpy as np
-import pickle
-import os 
 
-
-
-DIRPATH = os.path.dirname(os.path.realpath(__file__))
-
-pipeline_pkl = os.path.join(DIRPATH, "assets",  "full_pipeline.pkl")
-
-def load_pickle(filename):
-    with open(filename, 'rb') as file:
-        data = pickle.load(file)
-        return data
-
-preprocessor = load_pickle(pipeline_pkl)
 
 
 def create_new_columns(train_data):
@@ -27,7 +13,7 @@ def create_new_columns(train_data):
 
 
 
-def create_processed_dataframe(processed_data, train_data):
+def create_processed_dataframe(processed_data, train_data, preprocessor):
     train_num_cols=train_data.select_dtypes(exclude=['object', 'category']).columns
     cat_features = preprocessor.named_transformers_['categorical']['cat_encoder'].get_feature_names()
     labels = np.concatenate([train_num_cols, cat_features])
