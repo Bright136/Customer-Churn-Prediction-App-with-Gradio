@@ -1,24 +1,19 @@
+# import libraries to set system path
 import os
 import sys
 
 # Add the parent directory of the current file to the system path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-
+# import the rest of the libraries
 import gradio as gr
-import pickle 
-from gradio.themes.base import Base
 import pandas as pd
 import numpy as np
-from src.utils import create_new_columns, create_processed_dataframe
+import pickle
+from src.utils import create_new_columns, create_processed_dataframe, return_features
 
-# Get the directory path of the current file
-DIRPATH = os.path.dirname(os.path.realpath(__file__))
 
-# Define the file paths for the pickle files and the CSV file
-pipeline_pkl = os.path.join(DIRPATH, "..", "assets", "ml_components", "full_pipeline.pkl")
-log_reg = os.path.join(DIRPATH, "..","assets", "ml_components", "logistic_reg_class_model.pkl")
-hist_df = os.path.join(DIRPATH, "..", "assets",  "history.csv")
+
 
 # Function to check if a CSV file exists and append data to it
 def check_csv(csv_file, data):
@@ -36,9 +31,22 @@ def load_pickle(filename):
         data = pickle.load(file)
         return data
 
+# Get the directory path of the current file
+DIRPATH = os.path.dirname(os.path.realpath(__file__))
+
+# Define the file paths for the pickle files and the CSV file
+pipeline_pkl = os.path.join(DIRPATH, "..", "assets", "ml_components", "full_pipeline.pkl")
+log_reg = os.path.join(DIRPATH, "..","assets", "ml_components", "logistic_reg_class_model.pkl")
+hist_df = os.path.join(DIRPATH, "..", "assets",  "history.csv")
+
+
 # Load the pipeline and model from the pickle files
 pipeline = load_pickle(pipeline_pkl)
 model = load_pickle(log_reg)
+
+
+# get feature 
+features = return_features()
 
 
 def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneService, MultipleLines, InternetService, 
@@ -53,11 +61,13 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
     x = np.array([data])
     
     # Create a DataFrame from the array with column names
-    dataframe = pd.DataFrame(x, columns=train_features)
+    dataframe = pd.DataFrame(x, columns=features)
+    
     
     # Convert specific columns to float data type
     dataframe = dataframe.astype({'MonthlyCharges': 'float', 'TotalCharges': 'float', 'tenure': 'float'})
-    
+    hist_data = dataframe.copy()
+
     # Create new columns in the DataFrame
     dataframe_ = create_new_columns(dataframe)
     
@@ -65,17 +75,17 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
         # Apply the pipeline transformation to the processed DataFrame
         processed_data = pipeline.transform(dataframe_)
     except Exception as e:
-        raise gr.gradio('Kindly make sure to check/select all')
+        raise gr.Error('Kindly make sure to check/select all parameters')
     else:
         # Check if the history.csv file exists and append the input data to it
-        check_csv(hist_df, dataframe)
+        check_csv(hist_df, hist_data)
         
         # Read the history.csv file into a DataFrame
         history = pd.read_csv(hist_df)
         
         # Create a processed DataFrame from the processed_data
         processed_dataframe = create_processed_dataframe(processed_data, dataframe, pipeline)
-        
+
         # Make predictions using the model
         predictions = model.predict_proba(processed_dataframe)
     
@@ -83,19 +93,17 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
     return round(predictions[0][0], 3), round(predictions[0][1], 3), history.sort_index(ascending=False).head()
 
 
-# Set the theme for the Gradio interface
+
+
+# set the theme for the interface
 theme = gr.themes.Default().set(body_background_fill="#0E1117",
-                                 background_fill_secondary="#FFFFFF",
-                                 background_fill_primary="#262730",
-                                 body_text_color="#FF4B4B",
-                                 checkbox_background_color='#FFFFFF', 
-                                 button_secondary_background_fill="#FF4B4B")
+                                background_fill_secondary="#FFFFFF",
+                                background_fill_primary="#262730",
+                                body_text_color="#FF4B4B",
+                                checkbox_background_color='#FFFFFF', 
+                                button_secondary_background_fill="#FF4B4B")
 
-# Define the list of train features
-train_features = ['gender', 'SeniorCitizen', 'Partner', 'Dependents','tenure', 'PhoneService', 'MultipleLines', 'InternetService', 
-                   'OnlineSecurity', 'OnlineBackup', 'DeviceProtection','TechSupport','StreamingTV', 'StreamingMovies', 
-                   'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges']
-
+# Set the theme for the Gradio interface
 css = """
 .svelte-s1r2yt {font-size: 30px;
                 color: white;

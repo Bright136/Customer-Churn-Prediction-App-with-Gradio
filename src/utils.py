@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 
+
 # Function to create new columns in the train_data dataframe
 def create_new_columns(train_data):
     # Calculate monthly variations by subtracting the product of tenure and monthly charges from total charges
@@ -35,3 +36,13 @@ def create_processed_dataframe(processed_data, train_data, preprocessor):
     
     # Return the processed_dataframe
     return processed_dataframe
+
+
+
+def return_features():
+    # Define the list of column features
+    features = ['gender', 'SeniorCitizen', 'Partner', 'Dependents','tenure', 'PhoneService', 'MultipleLines', 'InternetService', 
+                    'OnlineSecurity', 'OnlineBackup', 'DeviceProtection','TechSupport','StreamingTV', 'StreamingMovies', 
+                    'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges']
+    return features
+
