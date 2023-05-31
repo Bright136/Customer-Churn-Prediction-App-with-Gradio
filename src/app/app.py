@@ -80,7 +80,7 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
         predictions = model.predict_proba(processed_dataframe)
     
     # Return the churn predictions, history DataFrame, and input history
-    return round(predictions[0][0], 3), round(predictions[0][1], 3), history
+    return round(predictions[0][0], 3), round(predictions[0][1], 3), history.head()
 
 
 # Set the theme for the Gradio interface
