@@ -150,7 +150,8 @@ with  gr.Blocks(theme=theme, css=css) as demo:
                                 minimum=0,
                                 value=0.0,
                                 label='No')
-        with gr.Accordion('Input History'):
+    with gr.Row():
+        with gr.Accordion('Input History', open=False):
             output3 = gr.Dataframe()
 
     submit_button.click(fn=predict_churn, inputs=[gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneService, MultipleLines,     
