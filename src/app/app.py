@@ -80,7 +80,7 @@ def predict_churn(gender, SeniorCitizen, Partner, Dependents, Tenure, PhoneServi
         predictions = model.predict_proba(processed_dataframe)
     
     # Return the churn predictions, history DataFrame, and input history
-    return round(predictions[0][0], 3), round(predictions[0][1], 3), history.head()
+    return round(predictions[0][0], 3), round(predictions[0][1], 3), history.sort_index(ascending=False).head()
 
 
 # Set the theme for the Gradio interface
@@ -96,8 +96,15 @@ train_features = ['gender', 'SeniorCitizen', 'Partner', 'Dependents','tenure', '
                    'OnlineSecurity', 'OnlineBackup', 'DeviceProtection','TechSupport','StreamingTV', 'StreamingMovies', 
                    'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges']
 
+css = """
+.svelte-s1r2yt {font-size: 30px;
+                color: white;
+                font-weight: 300}
+"""
+
+
 # Create the Gradio interface
-with  gr.Blocks(theme=theme) as demo:
+with  gr.Blocks(theme=theme, css=css) as demo:
     gr.HTML("""
     <h1 style="color:white; text-align:center">Customer Churn Classification App</h1>
     <h2 style="color:white;">Welcome Cherished User 👋 </h2>
@@ -134,7 +141,7 @@ with  gr.Blocks(theme=theme) as demo:
     submit_button = gr.Button('Prediction')
     
     with gr.Row():
-        with gr.Accordion('Churn Prediction'):
+        with gr.Accordion('Churn Prediction', ):
             output1 = gr.Slider(maximum=1,
                                 minimum=0,
                                 value=0.0,
