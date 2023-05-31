@@ -1,16 +1,20 @@
+import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import gradio as gr
 import pickle 
 from gradio.themes.base import Base
-# import time
 import pandas as pd
 import numpy as np
-from utils import create_new_columns, create_processed_dataframe
+from src.utils import create_new_columns, create_processed_dataframe
 import os 
 
 DIRPATH = os.path.dirname(os.path.realpath(__file__))
 
-pipeline_pkl = os.path.join(DIRPATH, "assets",  "full_pipeline.pkl")
-log_reg = os.path.join(DIRPATH, "assets",  "logistic_reg_class_model.pkl")
+pipeline_pkl = os.path.join(DIRPATH, "..", "assets",  "full_pipeline.pkl")
+log_reg = os.path.join(DIRPATH, "..","assets",  "logistic_reg_class_model.pkl")
 
 hist_df = os.path.join(DIRPATH, "assets",  "history.csv")
 
