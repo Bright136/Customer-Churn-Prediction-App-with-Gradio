@@ -4,7 +4,7 @@
 ## Summary
 | Code      | Name        | Published Article |  Deployed App |
 |-----------|-------------|:-------------:|------:|
-| LP4 | Customer Churn Prediction App with Gradio |  [Building a Customer Churn Prediction App with Gradio](https://brighteshun.medium.com/building-a-customer-churn-prediction-app-with-gradio-3b9384f8efcc) | [Not Deployed Yet](https://huggingface.co/spaces/bright1/Customer-Churn-App) |
+| LP4 | Customer Churn Prediction App with Gradio |  [Building a Customer Churn Prediction App with Gradio](https://brighteshun.medium.com/building-a-customer-churn-prediction-app-with-gradio-3b9384f8efcc) | [Customer Churn App](https://huggingface.co/spaces/bright1/Customer-Churn-App) |
 
 ## Project Description
 This project involves building a customer churn prediction app with Gradio. The app uses a trained machine learning model to predict the likelihood of a customer churning based on their input data.
@@ -45,7 +45,7 @@ To execute the app, follow these steps:
 After all requirement have been install
 
 At the root of your repository in your terminal
-run the command: ` gradio .\code\app\scr\app.py`
+run the command: ` gradio .src\app\app.py'`
 
 
 <span>Photos of the Gradio App</span>
@@ -58,20 +58,20 @@ run the command: ` gradio .\code\app\scr\app.py`
 </div>
 
 ## Author
-<div align='center'>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Github ID</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Bright Eshun</td>
-                <td><a href="https://github.com/Bright136" target="_blank" rel="nofollow">@Bright136</a></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Twitter</th>
+    <th>LinkedIn</th>
+    <th>GitHub</th>
+    <th>Hugging Face</th>
+  </tr>
+  <tr>
+    <td>Bright Eshun</td>
+    <td><a href="https://twitter.com/bright_eshun_">@bright_eshun_</a></td>
+    <td><a href="https://www.linkedin.com/in/bright-eshun/">@brighteshun</a></td>
+    <td><a href="https://github.com/Bright136">@bright136</a></td>
+    <td><a href="https://huggingface.co/bright1">@bright1</a></td>
+  </tr>
+</table>
 
