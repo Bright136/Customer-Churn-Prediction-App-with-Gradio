@@ -1,5 +1,9 @@
-                                                                                                                                                                                                        
 # Customer Churn Prediction App with Gradio
+<div align='center'> 
+    <img src="https://drive.google.com/uc?export=view&id=1oqqc6HKCjyPx7_7vwoy3Iik5OvH3VGNb"/>
+
+</div>
+
 
 ## Summary
 | Code      | Name        | Published Article |  Deployed App |
@@ -37,7 +41,7 @@ Do:
 
 - Linux & MacOs:
 
-        python3 -m venv ve  nv; source venv/bin/activate; python -m pip install -q --upgrade pip; python -m pip install -qr requirements.txt
+        python3 -m venv venv; source venv/bin/activate; python -m pip install -q --upgrade pip; python -m pip install -qr requirements.txt
 
 
 ## App Execution
